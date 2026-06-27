@@ -1,0 +1,8 @@
+{
+    "rewrites": [
+      {
+        "source": "/api/:path*",
+        "destination": "https://heritage-backend-9axu.onrender.com/api/:path*"
+      }
+    ]
+  }

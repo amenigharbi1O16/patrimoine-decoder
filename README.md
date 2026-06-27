@@ -5,7 +5,7 @@
 
 **Live Demo:** https://heritage-decoder.vercel.app  
 **Video:** [YouTube — à ajouter]  
-**Author:** Ameni Gharbi | Horizon School of Digital Technologies, Tunisia
+**Author:** Ameni Gharbi
 
 ---
 

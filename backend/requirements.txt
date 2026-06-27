@@ -11,5 +11,3 @@ chromadb
 bcrypt
 python-jose[cryptography]
 mcp
-sentence-transformers
-torch --index-url https://download.pytorch.org/whl/cpu

@@ -1,15 +1,12 @@
 """
 ChromaDB vector store — Heritage Decoder agent memory (Level 2 RAG).
-
-Stores transcription embeddings per session so Agent 4 can retrieve
-similar past analyses and enrich historical context.
+Uses ChromaDB's default embedding function (no torch required).
 """
 import os
 from datetime import datetime
 
 CHROMA_PATH = os.path.join(os.path.dirname(__file__), "..", "..", "data", "chroma")
 COLLECTION_NAME = "heritage_analyses"
-EMBEDDING_MODEL = "all-MiniLM-L6-v2"
 
 _collection = None
 
@@ -19,13 +16,11 @@ def _get_collection():
     if _collection is not None:
         return _collection
     import chromadb
-    from chromadb.utils import embedding_functions
+    from chromadb.utils.embedding_functions import DefaultEmbeddingFunction
 
     os.makedirs(CHROMA_PATH, exist_ok=True)
     client = chromadb.PersistentClient(path=CHROMA_PATH)
-    ef = embedding_functions.SentenceTransformerEmbeddingFunction(
-        model_name=EMBEDDING_MODEL
-    )
+    ef = DefaultEmbeddingFunction()
     _collection = client.get_or_create_collection(
         name=COLLECTION_NAME,
         embedding_function=ef,
@@ -35,7 +30,6 @@ def _get_collection():
 
 
 def init_store() -> None:
-    """Initialize ChromaDB collection (call before Docker build)."""
     _get_collection()
     print(f"[ChromaDB] Store ready at {CHROMA_PATH}")
 
@@ -48,7 +42,6 @@ def save_analysis(
     verdict: str = "",
     language: str = "",
 ) -> None:
-    """Save a transcription embedding after each completed analysis."""
     if not transcription or not transcription.strip():
         return
     try:
@@ -72,7 +65,6 @@ def save_analysis(
 
 
 def query_similar(session_id: str, query_text: str, top_k: int = 3) -> list[dict]:
-    """Return top-K similar past analyses for this session."""
     if not query_text or not query_text.strip():
         return []
     try:
@@ -108,7 +100,6 @@ def query_similar(session_id: str, query_text: str, top_k: int = 3) -> list[dict
 
 
 def format_similar_context(similar: list[dict]) -> str:
-    """Format ChromaDB hits as prompt text for Agent 4."""
     if not similar:
         return ""
     lines = [f"Similar manuscripts you analyzed before ({len(similar)} matches):"]
@@ -121,7 +112,6 @@ def format_similar_context(similar: list[dict]) -> str:
 
 
 def count_entries(session_id: str) -> int:
-    """Count ChromaDB entries for a session."""
     try:
         collection = _get_collection()
         if collection.count() == 0:

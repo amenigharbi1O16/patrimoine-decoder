@@ -1,0 +1,27 @@
+﻿============================================================
+TEST 1 - Or 9011 + hallucination (ibn al haytham)
+============================================================
+  VERDICT     : HALLUCINATION
+  CONFIDENCE  : 5%
+  REAL AUTHOR : Unknown
+  LANGUAGE    : Arabic
+  ERROR: 'charmap' codec can't encode characters in position 17-21: character maps to <undefined>
+============================================================
+TEST 2 - Add MS 7474 + Ptolemy (verified)
+============================================================
+  VERDICT     : VERIFIED
+  CONFIDENCE  : 95%
+  REAL AUTHOR : Claudius Ptolemy (translated by Ishaq ibn Hunayn)
+  LANGUAGE    : Arabic
+  ERROR: 'charmap' codec can't encode characters in position 17-20: character maps to <undefined>
+============================================================
+TEST 3 - No catalog selected
+============================================================
+  VERDICT     : NO VALIDATION REQUIRED
+  CONFIDENCE  : 100%
+  REAL AUTHOR : N/A
+  LANGUAGE    : Unknown
+  TRANSCRIPTION: Manuscript text for testing purposes...
+  TRANSLATION : Manuscript text for testing purposes...
+  EXPLANATION : 
+

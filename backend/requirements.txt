@@ -1,0 +1,14 @@
+fastapi
+uvicorn
+python-dotenv
+sqlalchemy
+groq
+fastmcp
+python-multipart
+google-generativeai
+google-adk
+chromadb
+sentence-transformers
+bcrypt
+python-jose[cryptography]
+mcp

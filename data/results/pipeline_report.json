@@ -1,0 +1,24 @@
+{
+    "manuscript_id": "add_ms_7474",
+    "pipeline_steps": [
+        "ocr_agent",
+        "validation_agent",
+        "translation_agent",
+        "context_agent"
+    ],
+    "ocr_transcription": "كتاب المجسطي بطليموس (Almagest by Ptolemy). Copied in 1287.",
+    "translation": "Le livre de l'Almageste de Ptolémée. Copié en 1287.",
+    "target_language": "French",
+    "historical_context": "Je suis désolé, mais il semble qu'il n'y ait pas de contexte vérifié disponible pour \"add_ms_7474\". Cependant, je peux essayer de fournir une explication générale sur ce qui pourrait être lié à cette référence.\n\n\"Add MS 7474\" ressemble à une référence à un manuscrit ou un document archivé, probablement dans une bibliothèque ou un centre de recherche. La notation \"Add MS\" est souvent utilisée pour désigner des manuscrits supplémentaires ou des ajouts à une collection existante. Le numéro \"7474\" serait alors l'identifiant unique de ce manuscrit ou document dans la collection.\n\nSans plus d'informations, il est difficile de déterminer avec précision ce que représente \"add_ms_7474\". Il pourrait s'agir d'un document historique, d'un manuscrit littéraire, d'un texte religieux, ou de tout autre type de document qui a été ajouté à une collection.\n\nSi vous avez plus de détails ou si vous pouvez fournir plus de contexte, je serais ravi de tenter de vous offrir une explication plus spécifique et plus détaillée.",
+    "claimed_author": "Ibn al-Haytham",
+    "real_author": "Ptolemy",
+    "verdict": "HALLUCINATION DETECTED",
+    "confidence_score": 20,
+    "hallucination_detected": false,
+    "review_required": true,
+    "verified_facts": [
+        "HALLUCINATION DETECTED: L'IA prétend que l'auteur est Ibn al-Haytham, mais les archives prouvent qu'il s'agit de Ptolemy."
+    ],
+    "source": "Qatar Digital Library / MCP",
+    "agent_memory_used": true
+}

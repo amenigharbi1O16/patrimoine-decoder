@@ -1,6 +1,7 @@
 import os, shutil, uuid, json
-from fastapi import FastAPI, UploadFile, File, Form, Depends, HTTPException, status
+from fastapi import FastAPI, UploadFile, File, Form, Depends, HTTPException, status, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import Response
 from pydantic import BaseModel
 from dotenv import load_dotenv
 
@@ -20,6 +21,17 @@ load_dotenv()
 init_db()
 
 app = FastAPI(title="Universal Heritage Decoder API")
+
+@app.options("/{rest_of_path:path}")
+async def preflight_handler(rest_of_path: str, request: Request):
+    return Response(
+        status_code=200,
+        headers={
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+            "Access-Control-Allow-Headers": "*",
+        },
+    )
 
 app.add_middleware(
     CORSMiddleware,
@@ -79,7 +91,7 @@ def _analysis_to_dict(entry: AnalysisHistory, include_full: bool = True) -> dict
     return base
 
 
-# ─── Auth routes ──────────────────────────────────────────────────────────────
+# ─── Auth routes ───────────────────────────────────────────────────────────────
 
 class AuthRequest(BaseModel):
     username: str
@@ -124,7 +136,7 @@ def login(req: AuthRequest):
     return {"access_token": token, "token_type": "bearer", "username": req.username}
 
 
-# ─── Public routes ────────────────────────────────────────────────────────────
+# ─── Public routes ─────────────────────────────────────────────────────────────
 
 @app.get("/api/health")
 def health():
@@ -148,7 +160,7 @@ def get_manuscripts():
     ]
 
 
-# ─── Protected routes (require JWT) ───────────────────────────────────────────
+# ─── Protected routes (require JWT) ────────────────────────────────────────────
 
 @app.post("/api/analyze")
 def analyze(
